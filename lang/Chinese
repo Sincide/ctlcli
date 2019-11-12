@@ -1,11 +1,3 @@
-# Arch Linux Fast Install (archfi)
-# --------------------------------
-# project    : https://github.com/MatMoul/archfi
-# language   : zh-cn
-# translator : chery (pseudo, name or e-mail.)
-# notes      : misc text...
-
-
 locale=en_US.UTF-8
 #font=
 
@@ -56,12 +48,12 @@ txtluksdevicecreated="luks device created !"
 
 txtinstallmenu="安装菜单"
 
-txtarchinstallmenu="Arch安装菜单"
+txtarchinstallmenu="Ctlos安装菜单"
 txtrungrubmakeconfig="运行grub-mkconfig?"
 
 txteditmirrorlist="编辑源列表"
-txtinstallarchlinux="安装Arch Linux"
-txtconfigarchlinux="配置Arch Linux"
+txtinstallarchlinux="安装ctlcli"
+txtconfigarchlinux="配置ctlcli"
 
 txtsethostname="设置计算机名"
 txtsetfont="设置字体"
@@ -87,8 +79,8 @@ txtpressanykey="任意键继续."
 txtinstallosprober="如果你想使用mutli-boot，os-prober是一个很好的解决方案.\n 安装os-prober吗?"
 txtefibootmgr="efibootmgr依赖于EFI."
 
-txtarchdidesc="图形桌面安装脚本"
-txtinstallarchdi="archdi 是ARCH linux 安装的第二个脚本,用于帮助我们安装完整的桌面的环境.\n\n你仅仅需要安装并运行这个脚本. 选择接下来的菜单.\n\nArch Linux Desktop 安装需要两个依赖 : wget and libnewt.\n\npacstrap wget libnewt ?"
-txtarchdiinstallandlaunch="安装并运行archdi"
-txtarchdiinstall="安装archdi"
-txtarchdilaunch="启动archdi"
+txtctlclidesc="图形桌面安装脚本"
+txtinstallctlcli="ctlcli 是ARCH linux 安装的第二个脚本,用于帮助我们安装完整的桌面的环境.\n\n你仅仅需要安装并运行这个脚本. 选择接下来的菜单.\n\nctlcli Desktop 安装需要两个依赖 : wget and libnewt.\n\npacstrap wget libnewt ?"
+txtctlcliinstallandlaunch="安装并运行ctlcli"
+txtctlcliinstall="安装ctlcli"
+txtctlclilaunch="启动ctlcli"

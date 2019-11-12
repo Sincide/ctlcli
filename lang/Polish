@@ -1,11 +1,3 @@
-# Arch Linux Fast Install (archfi)
-# --------------------------------
-# project    : https://github.com/MatMoul/archfi
-# language   : Polish
-# translator : dawidd6 (dawidd0811@gmail.com)
-# notes      : Version 0.1
-
-
 locale=pl_PL.UTF-8
 font=lat2-16
 
@@ -56,12 +48,12 @@ txtluksdevicecreated="Urządzenie LUKS utworzone !"
 
 txtinstallmenu="Menu Instalacji"
 
-txtarchinstallmenu="Menu instalacji Arch'a"
+txtarchinstallmenu="Menu instalacji Ctlos'a"
 txtrungrubmakeconfig="Uruchomić grub-mkconfig ?"
 
 txteditmirrorlist="Edytuj listę mirrorów"
-txtinstallarchlinux="Zainstaluj Arch Linuksa"
-txtconfigarchlinux="Skonfiguruj Arch Linuksa"
+txtinstallarchlinux="Zainstaluj Ctlos Linuksa"
+txtconfigarchlinux="Skonfiguruj Ctlos Linuksa"
 
 txtsethostname="Ustaw nazwę komputera"
 txtsetfont="Ustaw czcionkę"
@@ -87,8 +79,8 @@ txtpressanykey="Wciśnij dowolny przycisk, aby kontynuować."
 txtinstallosprober="os-prober to dobre rozwiązanie jeśli chcesz korzystać z multi-boot'a.\nZainstalować os-prober ?"
 txtefibootmgr="efibootmgr jest wymagane dla komputera z EFI."
 
-txtarchdidesc="Pełny desktopowy skrypt instalacyjnyFull"
-txtinstallarchdi="Arch Linux Desktop Install (archdi) to drugi skrypt, który pomoże ci w instalacji pełnego środowiska pracy.\n\nMożesz po prostu uruchomić skrypt i zainstalować. Wybierz w następnym menu.\n\nArch Linux Desktop Install ma dwie zależlności : wget i libnewt.\n\nZainstalować : wget libnewt ?"
-txtarchdiinstallandlaunch="Zainstaluj i uruchom archdi"
-txtarchdiinstall="Instalacja archdi"
-txtarchdilaunch="Uruchom archdi"
+txtctlclidesc="Pełny desktopowy skrypt instalacyjnyFull"
+txtinstallctlcli="ctlcli Desktop Install (ctlcli) to drugi skrypt, który pomoże ci w instalacji pełnego środowiska pracy.\n\nMożesz po prostu uruchomić skrypt i zainstalować. Wybierz w następnym menu.\n\nctlcli Desktop Install ma dwie zależlności : wget i libnewt.\n\nZainstalować : wget libnewt ?"
+txtctlcliinstallandlaunch="Zainstaluj i uruchom ctlcli"
+txtctlcliinstall="Instalacja ctlcli"
+txtctlclilaunch="Uruchom ctlcli"

@@ -1,11 +1,3 @@
-# Arch Linux Fast Install (archfi)
-# --------------------------------
-# project    : https://github.com/MatMoul/archfi
-# language   : Italian
-# translator : Andrea Somaini
-# notes      : Traduzione in italiano
-
-
 locale=en_US.UTF-8
 
 
@@ -55,12 +47,12 @@ txtluksdevicecreated="Dispositivo luks creato !"
 
 txtinstallmenu="Menu di installazione"
 
-txtarchinstallmenu="Menu di installazione di Arch"
+txtarchinstallmenu="Menu di installazione di Ctlos"
 txtrungrubmakeconfig="Eseguire grub-mkconfig ?"
 
 txteditmirrorlist="Modifica mirrorlist"
-txtinstallarchlinux="Installa Arch Linux"
-txtconfigarchlinux="Configura Arch Linux"
+txtinstallarchlinux="Installa ctlcli"
+txtconfigarchlinux="Configura ctlcli"
 
 txtsethostname="Imposta nome computer"
 txtsetfont="Imposta font"
@@ -85,8 +77,8 @@ txtpressanykey="Premi un tasto per continuare."
 txtinstallosprober="os-prober serve per le soluzioni multi-boot.\nInstallare os-prober ?"
 txtefibootmgr="efibootmgr e' necessario per computer efi."
 
-txtarchdidesc="Script di installazione di desktop completo"
-txtinstallarchdi="Arch Linux Desktop Install (archdi) e' uno script secondario che ti aiuta a installare tutti i software necessari.\n\nPuoi installare lo script o lanciarlo. Scegli nel prossimo menu.\n\nArch Linux Desktop Install ha due dipendenze : wget e libnewt.\n\npacstrap wget libnewt (vuoi installare queste dipendenze) ?"
-txtarchdiinstallandlaunch="Installa e lancia archdi"
-txtarchdiinstall="Installa archdi"
-txtarchdilaunch="Lancia archdi"
+txtctlclidesc="Script di installazione di desktop completo"
+txtinstallctlcli="ctlcli Desktop Install (ctlcli) e' uno script secondario che ti aiuta a installare tutti i software necessari.\n\nPuoi installare lo script o lanciarlo. Scegli nel prossimo menu.\n\nctlcli Desktop Install ha due dipendenze : wget e libnewt.\n\npacstrap wget libnewt (vuoi installare queste dipendenze) ?"
+txtctlcliinstallandlaunch="Installa e lancia ctlcli"
+txtctlcliinstall="Installa ctlcli"
+txtctlclilaunch="Lancia ctlcli"

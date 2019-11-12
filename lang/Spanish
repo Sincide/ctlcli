@@ -1,11 +1,3 @@
-# Arch Linux Fast Install (archfi)
-# --------------------------------
-# project    : https://github.com/MatMoul/archfi
-# language   : Español
-# translator : Mystogab (gabriel.desimone@mail.com) and pebeto (joseesparza@sdf.org)
-# notes      : Versión 0.3. Corrections and neutralization of the language.
-
-
 locale=es_ES.UTF-8
 #font=
 
@@ -56,12 +48,12 @@ txtluksdevicecreated="¡ La partición luks ha sido creada !"
 
 txtinstallmenu="Menú de Instalación"
 
-txtarchinstallmenu="Menú de instalación de Arch"
+txtarchinstallmenu="Menú de instalación de Ctlos"
 txtrungrubmakeconfig="¿ Ejecutar grub-mkconfig ?"
 
 txteditmirrorlist="Editar mirrorlist"
-txtinstallarchlinux="Instalar Arch Linux"
-txtconfigarchlinux="Configurar Arch Linux"
+txtinstallarchlinux="Instalar ctlcli"
+txtconfigarchlinux="Configurar ctlcli"
 
 txtsethostname="Establecer el nombre de la computadora"
 txtsetlocale="Establecer localización"
@@ -86,8 +78,8 @@ txtpressanykey="Presione cualquier tecla para contnuar."
 txtinstallosprober="os-prober es una buena solución si quieres usar multi-boot.\n¿ Instalar os-prober ?"
 txtefibootmgr="se requiere efibootmgr para computadoras EFI."
 
-txtarchdidesc="Script de instalación completa de escritorio"
-txtinstallarchdi="Arch Linux Desktop Install (archdi) es un script secundario que puede ayudarte a instalar una completa estación de trabajo.\n\nPuedes ejecutar el script o instalarlo. Elige en el siguiente menú.\n\nArch Linux Desktop Install posee dos dependencias : wget y libnewt.\n\npacstrap wget libnewt ?"
-txtarchdiinstallandlaunch="Instalar y ejecutar archdi"
-txtarchdiinstall="Instalar archdi"
-txtarchdilaunch="Ejecutar archdi"
+txtctlclidesc="Script de instalación completa de escritorio"
+txtinstallctlcli="ctlcli Desktop Install (ctlcli) es un script secundario que puede ayudarte a instalar una completa estación de trabajo.\n\nPuedes ejecutar el script o instalarlo. Elige en el siguiente menú.\n\nctlcli Desktop Install posee dos dependencias : wget y libnewt.\n\npacstrap wget libnewt ?"
+txtctlcliinstallandlaunch="Instalar y ejecutar ctlcli"
+txtctlcliinstall="Instalar ctlcli"
+txtctlclilaunch="Ejecutar ctlcli"

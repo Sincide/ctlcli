@@ -1,19 +1,17 @@
 #!/bin/bash
 
-# Arch Linux Fast Install (archfi)
+# fork archfi
+# author: MatMoul
+#         https://github.com/MatMoul
 # --------------------------------
-# author    : MatMoul
-#             https://github.com/MatMoul
-#             http://sourceforge.net/u/matmoul
-# project   : https://github.com/MatMoul/archfi
-#             http://sourceforge.net/projects/archfi/
-# license   : LGPL-3.0 (http://opensource.org/licenses/lgpl-3.0.html)
-#
-# referance : https://wiki.archlinux.org/index.php/Installation_guide
+# Arch Linux installer (ctlcli)
+# Alex Creio
+#         https://github.com/creio
+#         https://github.com/ctlos
 
 
-apptitle="Arch Linux Fast Install (archfi) - Version: 2019.11.02.00.13.01 (GPLv3)"
-baseurl=https://raw.githubusercontent.com/MatMoul/archfi/master
+apptitle="Arch Linux installer (ctlcli) (GPLv3)"
+baseurl=https://raw.githubusercontent.com/ctlos/ctlcli/master
 skipfont="0"
 
 
@@ -78,18 +76,17 @@ mainmenu(){
 
 chooselanguage(){
   options=()
-  options+=("Brazilian" "(By MaxWilliamJF)")
-  options+=("Dutch" "(By bowero)")
-  options+=("English" "(By MatMoul)")
-  options+=("French" "(By MatMoul)")
-  options+=("German" "(By untergrundbiber)")
-  options+=("Italian" "(By thegoldgoat)")
-  options+=("Hungarian" "(By KardiWeb)")
-  options+=("Polish" "(By dawidd6)")
-  options+=("Portuguese" "(By hugok)")
-  options+=("Russian" "(By Anonymous_Prodject)")
-  options+=("Spanish" "(By Mystogab)")
-  options+=("Turkish" "(By c0b41)")
+  options+=("Dutch" "(By Anon)")
+  options+=("English" "(By Anon)")
+  options+=("French" "(By Anon)")
+  options+=("German" "(By Anon)")
+  options+=("Italian" "(By Anon)")
+  options+=("Hungarian" "(By Anon)")
+  options+=("Polish" "(By Anon)")
+  options+=("Portuguese" "(By Anon)")
+  options+=("Russian" "(By Anon)")
+  options+=("Spanish" "(By Anon)")
+  options+=("Turkish" "(By Anon)")
   sel=$(whiptail --backtitle "${apptitle}" --title "${txtlanguage}" --menu "" 0 0 0 \
     "${options[@]}" \
     3>&1 1>&2 2>&3)
@@ -98,7 +95,7 @@ chooselanguage(){
     if [ "${sel}" = "English" ]; then
       loadstrings
     else
-      eval $(curl -L ${baseurl}/lng/${sel} | sed '/^#/ d')
+      eval $(curl -L ${baseurl}/lang/${sel} | sed '/^#/ d')
     fi
     if [ "${skipfont}" = "0" ]; then
       eval $(setfont ${font})
@@ -113,11 +110,6 @@ chooselanguage(){
 }
 
 setkeymap(){
-  #items=$(localectl list-keymaps)
-  #options=()
-  #for item in ${items}; do
-  #  options+=("${item}" "")
-  #done
   items=$(find /usr/share/kbd/keymaps/ -type f -printf "%f\n" | sort -V)
   options=()
   for item in ${items}; do
@@ -169,7 +161,7 @@ selectdisk(){
     IFS_ORIG=$IFS
     IFS=$'\n'
     for item in ${items}
-    do  
+    do
         options+=("${item}" "")
     done
     IFS=$IFS_ORIG
@@ -179,7 +171,7 @@ selectdisk(){
         return 1
     fi
     echo ${result%%\ *}
-    return 0    
+    return 0
 }
 
 diskpartmenu(){
@@ -335,7 +327,7 @@ diskpartautoefi(){
 }
 
 diskpartautoefiusb(){
-    device=$(selectdisk "${txtautoparts} (gpt,efi)")  
+    device=$(selectdisk "${txtautoparts} (gpt,efi)")
   if [ "$?" = "0" ]; then
     if (whiptail --backtitle "${apptitle}" --title "${txtautoparts} (gpt,efi)" --yesno "${txtautopartsconfirm//%1/${device}}" --defaultno 0 0) then
       clear
@@ -760,22 +752,11 @@ installmenu(){
 
 installbase(){
   clear
-  pkgs="base"
-  options=()
-  options+=("linux" "")
-  options+=("linux-lts" "")
-  options+=("linux-zen" "")
-  options+=("linux-hardened" "")
-  sel=$(whiptail --backtitle "${apptitle}" --title "Kernel" --menu "" 0 0 0 \
-    "${options[@]}" \
-    3>&1 1>&2 2>&3)
-  if [ "$?" = "0" ]; then
-    pkgs+=" ${sel}"
-  else
-    return 1
-  fi
-  echo "pacstrap /mnt ${pkgs}"
-  pacstrap /mnt ${pkgs}
+  echo "pacstrap /mnt base"
+  pacman-key --init
+  pacman-key --populate archlinux
+  pacman-key --refresh-keys
+  pacstrap /mnt base base-devel linux linux-headers nano netctl dhcpcd which inetutils wpa_supplicant dialog btrfs-progs dosfstools efitools git wget curl zsh
   pressanykey
 }
 
@@ -830,7 +811,6 @@ archmenu(){
   options+=("${txtedit//%1/mirrorlist}" "(${txtoptional})")
   options+=("${txtbootloader}" "")
   options+=("${txtenable//%1/dhcpcd}" "systemctl enable dhcpcd")
-  options+=("archdi" "${txtarchdidesc}")
   sel=$(whiptail --backtitle "${apptitle}" --title "${txtarchinstallmenu}" --menu "" --cancel-button "${txtback}" --default-item "${nextitem}" 0 0 0 \
     "${options[@]}" \
     3>&1 1>&2 2>&3)
@@ -922,11 +902,7 @@ archmenu(){
       ;;
       "${txtenable//%1/dhcpcd}")
         archenabledhcpcd
-        nextitem="archdi"
-      ;;
-      "archdi")
-        installarchdi
-        nextitem="archdi"
+        nextitem="dhcpcd"
       ;;
     esac
     archmenu "${nextitem}"
@@ -944,7 +920,7 @@ archchroot(){
 
 
 archsethostname(){
-  hostname=$(whiptail --backtitle "${apptitle}" --title "${txtsethostname}" --inputbox "" 0 0 "archlinux" 3>&1 1>&2 2>&3)
+  hostname=$(whiptail --backtitle "${apptitle}" --title "${txtsethostname}" --inputbox "" 0 0 "ctlcli" 3>&1 1>&2 2>&3)
   if [ "$?" = "0" ]; then
     clear
     echo "echo \"${hostname}\" > /mnt/etc/hostname"
@@ -954,11 +930,6 @@ archsethostname(){
 }
 
 archsetkeymap(){
-  #items=$(localectl list-keymaps)
-  #options=()
-  #for item in ${items}; do
-  #  options+=("${item}" "")
-  #done
   items=$(find /usr/share/kbd/keymaps/ -type f -printf "%f\n" | sort -V)
   options=()
   defsel=""
@@ -1274,7 +1245,7 @@ archgrubinstallchroot(){
 }
 
 archgrubinstallbootloader(){
-    device=$( selectdisk "${txtinstall//%1/bootloader}" )  
+    device=$( selectdisk "${txtinstall//%1/bootloader}" )
   if [ "$?" = "0" ]; then
     if [ "${eficomputer}" == "1" ]; then
       options=()
@@ -1600,9 +1571,9 @@ archrefindinstallchroot(){
 archenabledhcpcd(){
   if (whiptail --backtitle "${apptitle}" --title "${txtenable//%1/dhcpcd}" --yesno "${txtenable//%1/dhcpcd} ?" 0 0) then
     clear
-    
+
     echo "pacstrap /mnt dhcpcd"
-    
+
     pacstrap /mnt dhcpcd
     archchroot enabledhcpcd
     pressanykey
@@ -1611,77 +1582,6 @@ archenabledhcpcd(){
 archenabledhcpcdchroot(){
   echo "systemctl enable dhcpcd"
   systemctl enable dhcpcd
-  exit
-}
-
-installarchdi(){
-  txtinstallarchdi="Arch Linux Desktop Install (archdi) is a second script who can help you to install a full workstation.\n\nYou can just launch the script or install it. Choose in the next menu.\n\nArch Linux Desktop Install as two dependencies : wget and libnewt.\n\npacstrap wget libnewt ?"
-  if(whiptail --backtitle "${apptitle}" --title "archdi" --yesno "${txtinstallarchdi}" 0 0) then
-    clear
-    echo "pacstrap /mnt wget libnewt"
-    pacstrap /mnt wget libnewt
-  fi
-  if [ "$?" = "0" ]; then
-    options=()
-    options+=("${txtarchdiinstallandlaunch}" "")
-    options+=("${txtarchdilaunch}" "")
-    options+=("${txtarchdiinstall}" "")
-    sel=$(whiptail --backtitle "${apptitle}" --title "${txtarchdimenu}" --menu "" --cancel-button "${txtback}" 0 0 0 \
-      "${options[@]}" \
-      3>&1 1>&2 2>&3)
-    if [ "$?" = "0" ]; then
-      case ${sel} in
-        "${txtarchdiinstallandlaunch}") archchroot archdiinstallandlaunch;;
-        "${txtarchdilaunch}") archchroot archdilaunch;;
-        "${txtarchdiinstall}")
-          clear
-          archchroot archdiinstall
-          pressanykey
-        ;;
-      esac
-    fi
-  fi
-}
-archdidownload(){
-  txtselectserver="Select source server :"
-  txtback="Back"
-  options=()
-  options+=("sourceforge.net" "recommended")
-  options+=("github.com" "")
-  sel=$(whiptail --backtitle "${apptitle}" --title "${txtselectserver}" --menu "" --cancel-button "${txtback}" 0 0 0 \
-    "${options[@]}" \
-    3>&1 1>&2 2>&3)
-  if [ "$?" = "0" ]; then
-    case ${sel} in
-      "sourceforge.net")
-        archdiurl=archdi.sourceforge.net/archdi
-      ;;
-      "github.com")
-        archdiurl=matmoul.github.io/archdi >archdi
-      ;;
-    esac
-  fi
-  echo "curl -L ${archdiurl} >archdi"
-  curl -L ${archdiurl} >archdi
-}
-archdiinstallandlaunchchroot(){
-  cd
-  archdidownload
-  sh archdi -i
-  archdi --chroot
-  exit
-}
-archdilaunchchroot(){
-  cd
-  archdidownload
-  sh archdi --chroot
-  rm archdi
-  exit
-}
-archdiinstallchroot(){
-  cd
-  archdidownload
-  sh archdi -i
   exit
 }
 # --------------------------------------------------------
@@ -1787,11 +1687,8 @@ loadstrings(){
 
   txtpressanykey="Press any key to continue."
 
-  txtarchdidesc="Full desktop install script"
-  txtinstallarchdi="Arch Linux Desktop Install (archdi) is a second script who can help you to install a full workstation.\n\nYou can just launch the script or install it. Choose in the next menu.\n\nArch Linux Desktop Install as two dependencies : wget and libnewt.\n\npacstrap wget libnewt ?"
-  txtarchdiinstallandlaunch="Install and run archdi"
-  txtarchdiinstall="Install archdi"
-  txtarchdilaunch="Launch archdi"
+  txtctlclidesc="Full desktop install script"
+  txtinstallctlcli="Arch Linux Desktop Install (ctlcli) is a second script who can help you to install a full workstation.\n\nYou can just launch the script or install it. Choose in the next menu.\n\nArch Linux Desktop Install as two dependencies: wget and libnewt.\n\npacstrap wget libnewt?"
 }
 
 # --------------------------------------------------------
@@ -1802,7 +1699,7 @@ loadstrings(){
 while (( "$#" )); do
   case ${1} in
     --help)
-      echo "archfi"
+      echo "ctlcli"
       echo "------"
       echo "-sf | --skip-font                  Skip setfont from language files"
       echo "-efiX                              -efi0 : disable EFI, -efi1 efi inst, -efi2 efi hybrid inst"
@@ -1811,7 +1708,7 @@ while (( "$#" )); do
     ;;
     -sf | --skip-font) skipfont=1;;
     -t | --test) baseurl="https://raw.githubusercontent"
-                baseurl="${baseurl}.com/""${2}/archfi/${3}";;
+                baseurl="${baseurl}.com/""${2}/ctlcli/${3}";;
     -efi0) efimode=0;;
     -efi1)
       eficomputer=1
@@ -1844,9 +1741,6 @@ if [ "${chroot}" = "1" ]; then
     'syslinuxbootloaderefiinstall') archsyslinuxinstallbootloaderefichroot ${args};;
     'systemdbootloaderinstall') archsystemdinstallchroot ${args};;
     'refindbootloaderinstall') archrefindinstallchroot ${args};;
-    'archdiinstallandlaunch') archdiinstallandlaunchchroot;;
-    'archdiinstall') archdiinstallchroot;;
-    'archdilaunch') archdilaunchchroot;;
   esac
 else
   pacman -S --needed arch-install-scripts wget libnewt

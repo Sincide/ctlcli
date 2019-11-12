@@ -1,11 +1,3 @@
-# Arch Linux Fast Install (archfi)
-# --------------------------------
-# project    : https://github.com/MatMoul/archfi
-# language   : Dutch
-# translator : bowero (pseudo, name or e-mail.)
-# notes      : misc text...
-
-
 locale=nl_NL.UTF-8
 #font=
 
@@ -56,12 +48,12 @@ txtluksdevicecreated="luks schijf gecreeerd !"
 
 txtinstallmenu="Installatiemenu"
 
-txtarchinstallmenu="Arch installatie menu"
+txtarchinstallmenu="Ctlos installatie menu"
 txtrungrubmakeconfig="grub-mkconfig uitvoeren?"
 
 txteditmirrorlist="Wijzig mirrorlijst?"
-txtinstallarchlinux="Installeer Arch Linux"
-txtconfigarchlinux="Configureer Arch Linux"
+txtinstallarchlinux="Installeer ctlcli"
+txtconfigarchlinux="Configureer ctlcli"
 
 txtsethostname="Stel computernaam in"
 txtsetfont="Stel lettertype in"
@@ -87,8 +79,8 @@ txtpressanykey="Druk op een knop om door te gaan"
 txtinstallosprober="os-prober is een goede oplossing als je een multiboot wilt gebruiken.\nos-prober installeren ?"
 txtefibootmgr="efibootmgr is noodzakelijk voor efi-computer."
 
-txtarchdidesc="Volledige desktop-installatiescript"
-txtinstallarchdi="Arch Linux Desktop Install (archdi) is een tweede script dat je kan helpen om een volledig werkstation the installeren.\n\n Je kan het script gewoon opstarten of installeren. Kies in het volgende menu.\n\nArch Linux Desktop Install heeft twee afhankelijkheden : wget and libnewt.\n\npacstrap wget libnewt ?"
-txtarchdiinstallandlaunch="Installeer en voer archdi uit"
-txtarchdiinstall="Installeer archdi"
-txtarchdilaunch="Start archdi"
+txtctlclidesc="Volledige desktop-installatiescript"
+txtinstallctlcli="ctlcli Desktop Install (ctlcli) is een tweede script dat je kan helpen om een volledig werkstation the installeren.\n\n Je kan het script gewoon opstarten of installeren. Kies in het volgende menu.\n\nctlcli Desktop Install heeft twee afhankelijkheden : wget and libnewt.\n\npacstrap wget libnewt ?"
+txtctlcliinstallandlaunch="Installeer en voer ctlcli uit"
+txtctlcliinstall="Installeer ctlcli"
+txtctlclilaunch="Start ctlcli"

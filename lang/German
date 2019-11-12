@@ -1,11 +1,3 @@
-# Arch Linux Fast Install (archfi)
-# --------------------------------
-# project    : https://github.com/MatMoul/archfi
-# language   : German
-# translator : untergrundbiber (untergrundbiber@gmail.com)
-# notes      : Version 0.1
-
-
 locale=de_DE.UTF-8
 #font=
 
@@ -56,12 +48,12 @@ txtluksdevicecreated="LUKS-Laufwerk wurde erstellt!"
 
 txtinstallmenu="Installationsmenü"
 
-txtarchinstallmenu="Arch Installationsmenü"
+txtarchinstallmenu="Ctlos Installationsmenü"
 txtrungrubmakeconfig="grub-mkconfig ausführen?"
 
 txteditmirrorlist="Spiegelserver-Liste editieren"
-txtinstallarchlinux="Arch Linux installieren"
-txtconfigarchlinux="Arch Linux konfigurieren"
+txtinstallarchlinux="ctlcli installieren"
+txtconfigarchlinux="ctlcli konfigurieren"
 
 txtsethostname="Computername ändern"
 txtsetlocale="Lokalisierung ändern"
@@ -86,8 +78,8 @@ txtpressanykey="Drücken Sie eine beliebige Taste, um fortzufahren."
 txtinstallosprober="os-prober ist eine gute Lösung wenn Sie Mutli-Boot verwenden möchten.\nos-prober installieren?"
 txtefibootmgr="efibootmgr ist für EFI-Computer erforderlich."
 
-txtarchdidesc="Desktop-Installationsskript"
-txtinstallarchdi="Arch Linux Desktop Install (archdi) ist ein zweites Skript, das Ihnen helfen kann eine vollständige Desktopumgebung zu installieren.\n\nIm nächsten Menü können Sie wählen ob Sie das Skript nur starten oder ob Sie es installieren wollen.\n\nArch Linux Desktop Install hat zwei Abhängigkeiten: wget und libnewt.\n\nwget und libnewt jetzt installieren?"
-txtarchdiinstallandlaunch="Installieren und starten von archdi"
-txtarchdiinstall="archdi installieren"
-txtarchdilaunch="archdi starten"
+txtctlclidesc="Desktop-Installationsskript"
+txtinstallctlcli="ctlcli Desktop Install (ctlcli) ist ein zweites Skript, das Ihnen helfen kann eine vollständige Desktopumgebung zu installieren.\n\nIm nächsten Menü können Sie wählen ob Sie das Skript nur starten oder ob Sie es installieren wollen.\n\nctlcli Desktop Install hat zwei Abhängigkeiten: wget und libnewt.\n\nwget und libnewt jetzt installieren?"
+txtctlcliinstallandlaunch="Installieren und starten von ctlcli"
+txtctlcliinstall="ctlcli installieren"
+txtctlclilaunch="ctlcli starten"
