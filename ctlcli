@@ -718,6 +718,7 @@ installmenu(){
   fi
   options=()
   options+=("${txteditmirrorlist}" "(${txtoptional})")
+  options+=("${txteditinstallbase}" "(${txtoptional})")
   options+=("${txtinstallarchlinux}" "pacstrap base kernel")
   options+=("${txtinstallfirmware}" "(${txtoptional}) pacstrap linux-firmware")
   options+=("${txtconfigarchlinux}" "")
@@ -728,6 +729,10 @@ installmenu(){
     case ${sel} in
       "${txteditmirrorlist}")
         ${EDITOR} /etc/pacman.d/mirrorlist
+        nextitem="${txteditinstallbase}"
+      ;;
+      "${txteditinstallbase}")
+        ${EDITOR} /usr/share/ctlcli/basepkg
         nextitem="${txtinstallarchlinux}"
       ;;
       "${txtinstallarchlinux}")
@@ -756,7 +761,8 @@ installbase(){
   pacman-key --init
   pacman-key --populate archlinux
   pacman-key --refresh-keys
-  pacstrap /mnt base base-devel linux linux-headers nano netctl dhcpcd which inetutils wpa_supplicant dialog btrfs-progs dosfstools efitools git wget curl zsh
+  pacstrap /mnt "$(grep -h -v ^# /usr/share/ctlcli/basepkg)"
+  # pacstrap /mnt base base-devel linux linux-headers nano netctl dhcpcd which inetutils wpa_supplicant dialog btrfs-progs dosfstools efitools git wget curl zsh openssh
   pressanykey
 }
 
@@ -1647,6 +1653,7 @@ loadstrings(){
   txtarchinstallmenu="Arch Install Menu"
 
   txteditmirrorlist="Edit mirrorlist"
+  txteditinstallbase="Edit base pkg list"
   txtinstallarchlinux="Install Arch Linux"
   txtinstallfirmware="Install Firmware"
   txtconfigarchlinux="Config Arch Linux"
