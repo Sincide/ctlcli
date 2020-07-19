@@ -759,10 +759,11 @@ installbase(){
   clear
   echo "pacstrap /mnt base"
   pacman-key --init
-  pacman-key --populate archlinux
-  pacman-key --refresh-keys
-  pacstrap /mnt "$(grep -h -v ^# /usr/share/ctlcli/basepkg)"
-  # pacstrap /mnt base base-devel linux linux-headers nano netctl dhcpcd which inetutils wpa_supplicant dialog btrfs-progs dosfstools efitools git wget curl zsh openssh
+  pacman-key --populate
+  #pacman-key --refresh-keys
+  base_pkg=$(grep -h -v ^# /usr/share/ctlcli/basepkg)
+  pacstrap /mnt $base_pkg
+  # pacstrap /mnt base base-devel linux linux-headers nano netctl dhcpcd which inet>
   pressanykey
 }
 
