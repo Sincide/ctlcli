@@ -2,7 +2,7 @@
 pkgname=ctlcli
 destname="/usr/bin"
 srcpkg="/usr/share/ctlcli"
-pkgver=0.0.4
+pkgver=0.0.5
 pkgrel=1
 pkgdesc="Ctlos Cli installer"
 arch=('any')
@@ -19,6 +19,6 @@ package() {
     mkdir -p "${pkgdir}${srcpkg}"
     mkdir -p "${pkgdir}${destname}"
     cp -r "${srcdir}/${pkgname}/basepkg" "${pkgdir}${srcpkg}"
-    cp -r "${srcdir}/${pkgname}/ctlcli" "${pkgdir}${destname}"
+    install -Dm644 "${srcdir}/${pkgname}/ctlcli" "${pkgdir}${destname}"
     cp -r "${srcdir}/${pkgname}/lang" "${pkgdir}${srcpkg}"
 }
