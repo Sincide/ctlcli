@@ -14,6 +14,10 @@ apptitle="Arch Linux installer (ctlcli) (GPLv3)"
 baseurl=https://raw.githubusercontent.com/ctlos/ctlcli/master
 skipfont="0"
 
+# load base pkglist
+mkdir -p /usr/share/ctlcli
+curl -L https://raw.githubusercontent.com/ctlos/ctlcli/master/basepkg >/usr/share/ctlcli/basepkg
+
 
 # --------------------------------------------------------
 mainmenu(){
@@ -761,8 +765,6 @@ installbase(){
   pacman-key --init
   pacman-key --populate
   #pacman-key --refresh-keys
-  mkdir -p /usr/share/ctlcli
-  curl -L https://raw.githubusercontent.com/ctlos/ctlcli/master/basepkg >/usr/share/ctlcli/basepkg
   base_pkg=$(grep -h -v ^# /usr/share/ctlcli/basepkg)
   pacstrap /mnt $base_pkg
   # pacstrap /mnt base base-devel linux linux-headers nano netctl dhcpcd which inet
