@@ -761,9 +761,11 @@ installbase(){
   pacman-key --init
   pacman-key --populate
   #pacman-key --refresh-keys
+  mkdir -p /usr/share/ctlcli
+  curl -L https://raw.githubusercontent.com/ctlos/ctlcli/master/basepkg >/usr/share/ctlcli/basepkg
   base_pkg=$(grep -h -v ^# /usr/share/ctlcli/basepkg)
   pacstrap /mnt $base_pkg
-  # pacstrap /mnt base base-devel linux linux-headers nano netctl dhcpcd which inet>
+  # pacstrap /mnt base base-devel linux linux-headers nano netctl dhcpcd which inet
   pressanykey
 }
 
@@ -802,6 +804,7 @@ archmenu(){
   options+=("${txtsetlocale}" "/etc/locale.conf, /etc/locale.gen")
   options+=("${txtsettime}" "/etc/localtime")
   options+=("${txtsetrootpassword}" "")
+  options+=("${txtadduser}" "")
   options+=("${txtgenerate//%1/fstab}" "")
   if [ "${luksdrive}" = "1" ]; then
     options+=("${txtgenerate//%1/crypttab}" "")
@@ -845,6 +848,10 @@ archmenu(){
       ;;
       "${txtsetrootpassword}")
         archsetrootpassword
+        nextitem="${txtadduser}"
+      ;;
+      "${txtadduser}")
+        archadduser
         nextitem="${txtgenerate//%1/fstab}"
       ;;
       "${txtgenerate//%1/fstab}")
@@ -1069,6 +1076,16 @@ archsetrootpassword(){
 archsetrootpasswordchroot(){
   echo "passwd root"
   passwd root
+  exit
+}
+
+archadduserchroot(){
+  echo "add new user"
+  printf "\n\nUsername: "
+  read -r USER
+  useradd -m -g users -G "audio,floppy,log,network,rfkill,scanner,storage,optical,power,wheel" -s /bin/bash "$USER"
+  passwd "$USER"
+  echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
   exit
 }
 
@@ -1664,6 +1681,7 @@ loadstrings(){
   txtsetlocale="Set Locale"
   txtsettime="Set Time"
   txtsetrootpassword="Set root password"
+  txtadduser="Add user(/home/name)"
 
   txtuseutcclock="Use UTC hardware clock ?"
 
@@ -1736,6 +1754,7 @@ done
 if [ "${chroot}" = "1" ]; then
   case ${command} in
     'setrootpassword') archsetrootpasswordchroot;;
+    'adduser') archadduserchroot;;
     'setlocale') archsetlocalechroot;;
     'settimeutc') archsettimeutcchroot;;
     'settimelocal') archsettimelocalchroot;;
