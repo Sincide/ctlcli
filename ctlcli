@@ -1081,6 +1081,11 @@ archsetrootpasswordchroot(){
   exit
 }
 
+archadduser(){
+  clear
+  archchroot adduser
+  pressanykey
+}
 archadduserchroot(){
   echo "add new user"
   printf "\n\nUsername: "

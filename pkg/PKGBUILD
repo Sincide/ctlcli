@@ -2,7 +2,7 @@
 pkgname=ctlcli
 destname="/usr/bin"
 srcpkg="/usr/share/ctlcli"
-pkgver=0.0.8
+pkgver=0.0.9
 pkgrel=1
 pkgdesc="Ctlos Cli installer"
 arch=('any')
