@@ -2,7 +2,7 @@
 
 Start cli installer:
 
-`wget git.io/ctlcli`
+`curl -OL git.io/ctlcli`
 
 `sh ctlcli`
 
